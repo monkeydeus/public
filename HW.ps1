@@ -124,13 +124,17 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 
 # Remove existing content and copy netcore (and netfx) directories to plugins directory
 if ($netcoreExists) {
+    Write-Host "Exists :("
     Write-Verbose "Removing existing content from $fullNetcoreCredProviderPath"
+    Write-Host "Removing existing content from $fullNetcoreCredProviderPath"
     Remove-Item $fullNetcoreCredProviderPath -Force -Recurse
 }
 $tempNetcorePath = [System.IO.Path]::Combine($tempZipLocation, "plugins", $localNetcoreCredProviderPath)
 Write-Verbose "Copying Credential Provider from $tempNetcorePath to $fullNetcoreCredProviderPath"
+Write-Host "Copying Credential Provider from $tempNetcorePath to $fullNetcoreCredProviderPath"
 Copy-Item $tempNetcorePath -Destination $fullNetcoreCredProviderPath -Force -Recurse
 if ($AddNetfx -eq $True) {
+    Write-Host "TRUE"
     if ($netfxExists) {
         Write-Verbose "Removing existing content from $fullNetfxCredProviderPath"
         Remove-Item $fullNetfxCredProviderPath -Force -Recurse
@@ -139,7 +143,7 @@ if ($AddNetfx -eq $True) {
     Write-Verbose "Copying Credential Provider from $tempNetfxPath to $fullNetfxCredProviderPath"
     Copy-Item $tempNetfxPath -Destination $fullNetfxCredProviderPath -Force -Recurse
 }
-
+Write-Host "NOT TRUE"
 # Remove $tempZipLocation directory
 Write-Verbose "Removing the Credential Provider temp directory $tempZipLocation"
 Remove-Item $tempZipLocation -Force -Recurse
