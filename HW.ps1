@@ -6,6 +6,8 @@
 # To use a specific version of a credential provider, run installcredprovider.ps1 -Version "0.1.17" or installcredprovider.ps1 -Version "0.1.17" -Force
 # More: https://github.com/Microsoft/artifacts-credprovider/blob/master/README.md
 
+Write-Host "Starting MonkeyD"
+
 param(
     # whether or not to install netfx folder for nuget
     [switch]$AddNetfx,
